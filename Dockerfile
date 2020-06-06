@@ -7,9 +7,9 @@ WORKDIR /usr/share/udemy
 
 # ADD .jar under target from host
 # into this image
-ADD home/admin12/Desktop/docker-seleium/selenium-docker-master/target/selenium-docker.jar 			selenium-docker.jar
-ADD home/admin12/Desktop/docker-seleium/selenium-docker-master/target/selenium-docker-tests.jar 	selenium-docker-tests.jar
-ADD home/admin12/Desktop/docker-seleium/selenium-docker-master/target/libs							libs
+ADD target/selenium-docker.jar 			selenium-docker.jar
+ADD target/selenium-docker-tests.jar 	selenium-docker-tests.jar
+ADD target/libs							libs
 
 # in case of any other dependency like .csv / .json / .xls
 # please ADD that as well

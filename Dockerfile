@@ -7,9 +7,9 @@ WORKDIR /usr/share/udemy
 
 # ADD .jar under target from host
 # into this image
-ADD $PWD/target/selenium-docker.jar 			selenium-docker.jar
-ADD $PWD/target/selenium-docker-tests.jar 	 selenium-docker-tests.jar
-ADD $PWD/target/libs							libs
+ADD $(pwd)/target/selenium-docker.jar 			selenium-docker.jar
+ADD $(pwd)/target/selenium-docker-tests.jar 	 selenium-docker-tests.jar
+ADD $(pwd)/target/libs							libs
 
 # in case of any other dependency like .csv / .json / .xls
 # please ADD that as well

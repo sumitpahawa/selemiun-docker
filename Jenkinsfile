@@ -15,9 +15,8 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                script {
-                	app = docker.build("sumit2506/selenium-docker")
-                }
+                //sh
+                sh "docker build -t='vinsdocker/selenium-docker' ."
             }
         }
         stage('Push Image') {

@@ -14,14 +14,14 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                script {
+                any {
                 	app = docker.build("sumit2506/selenium-docker")
                 }
             }
         }
         stage('Push Image') {
             steps {
-                script {
+                any {
 			        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
 			        	app.push("${BUILD_NUMBER}")
 			            app.push("latest")

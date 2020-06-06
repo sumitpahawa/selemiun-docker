@@ -14,18 +14,18 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                any {
+               
                 	app = docker.build("sumit2506/selenium-docker")
-                }
+                
             }
         }
         stage('Push Image') {
             steps {
-                any {
+                
 			        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
 			        	app.push("${BUILD_NUMBER}")
 			            app.push("latest")
-			        }
+			        
                 }
             }
         }

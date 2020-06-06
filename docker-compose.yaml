@@ -1,24 +1,45 @@
-version: "3"
-services:
-  firefox:
-    image: selenium/node-firefox
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - hub
-    environment:
-      HUB_HOST: hub
-
-  chrome:
-    image: selenium/node-chrome
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - hub
-    environment:
-      HUB_HOST: hub
-
-  hub:
-    image: selenium/hub
-    ports:
-      - "4444:444                                                                                                                                                              4"
+    version: "3"
+    services:
+      hub:
+        image: selenium/hub:3.14
+      chrome:
+        image: selenium/node-chrome:3.14      
+        depends_on:
+          - hub
+        environment:
+          - HUB_HOST=hub
+        volumes:
+          - ./downloads:/home/seluser/Downloads      
+      firefox:
+        image: selenium/node-firefox:3.14
+        shm_size: '1gb'   
+        depends_on:
+          - hub
+        environment:
+          - HUB_HOST=hub
+        volumes:
+          - ./downloads:/home/seluser/Downloads
+      search-module:
+        image: sumit2506/selenium-docker
+        depends_on:
+          - chrome
+          - firefox
+        environment:
+          - HUB_HOST=hub
+          - BROWSER=firefox
+          - MODULE=search-module.xml
+        volumes:
+          - ./output/search-result:/usr/share/udemy/test-output 
+      book-module:
+        image: sumit2506/selenium-docker
+        depends_on:
+          - chrome
+          - firefox
+        environment:
+          - HUB_HOST=hub
+          - BROWSER=chrome
+          - MODULE=book-flight-module.xml
+        volumes:
+          - ./output/book-result:/usr/share/udemy/test-output
+          
+          

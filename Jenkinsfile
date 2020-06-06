@@ -6,7 +6,7 @@ pipeline {
          agent {
                 any {
                     image 'maven:3-alpine'
-                    args '-v /root/.m2:/root/.m2'
+                    args '-v /$HOME/.m2:/root/.m2'
                 }
             }
             steps {
@@ -17,7 +17,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //sh
-                sh "docker build -t='vinsdocker/selenium-docker' ."
+                sh "docker build -t='sumit2506/selenium-docker' ."
             }
         }
         stage('Push Image') {

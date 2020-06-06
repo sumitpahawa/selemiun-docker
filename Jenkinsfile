@@ -5,7 +5,7 @@ pipeline {
         stage('Build Jar') {
             steps {
                 //sh
-                sh "docker run-v /$HOME/.m2:/root/.m2 maven:3-alpine"
+                sh "docker run -v /$HOME/.m2:/root/.m2 maven:3-alpine"
                 sh "mvn clean package -DskipTests"
             }
         }
